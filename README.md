@@ -1,8 +1,8 @@
 # IDMC Deep Impact Analysis
 
-A Python tool that scans an **Informatica Intelligent Data Management Cloud (IDMC / IICS)** project and performs **object-level impact analysis** — it tells you exactly which assets (taskflows, mappings, tasks, mapplets, etc.) reference a given list of tables, columns, or keywords, and *where inside each asset* the reference occurs.
+A Python tool that scans an **Informatica Intelligent Data Management Cloud (IDMC / IICS)** project and performs **object-level impact analysis** - it tells you exactly which assets (taskflows, mappings, tasks, mapplets, etc.) reference a given list of tables, columns, or keywords, and *where inside each asset* the reference occurs.
 
-Given a set of search terms (e.g. table names like `PRODUCT` or column names like `CSCI_EMAIL`), the tool exports every asset in a project, cracks open each export package, and reports the matching component down to the individual step / transformation / property level.
+Given a set of search terms (e.g. table names like `PRODUCT` or column names like `MEMBER_ID`), the tool exports every asset in a project, cracks open each export package, and reports the matching component down to the individual step / transformation / property level.
 
 ## Why
 
