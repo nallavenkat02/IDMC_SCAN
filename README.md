@@ -6,27 +6,27 @@ Given a set of search terms (e.g. table names like `PRODUCT` or column names lik
 
 ## Why
 
-When a source table or column is being changed, retired, or migrated, you need to know **every downstream IDMC object impacted**. The IDMC UI search is shallow and asset-level only. This tool goes deeper — it parses the actual exported asset definitions (taskflow XML, mapping JSON/bin, MTT task JSON) so you can see the specific **DataTask, Expression, Decision, transformation, or property** that references your term.
+When a source table or column is being changed, retired, or migrated, you need to know **every downstream IDMC object impacted**. The IDMC UI search is shallow and asset-level only. This tool goes deeper - it parses the actual exported asset definitions (taskflow XML, mapping JSON/bin, MTT task JSON) so you can see the specific **DataTask, Expression, Decision, transformation, or property** that references your term.
 
 ## Features
 
-- **SSO cookie capture** — launches Microsoft Edge, you log in via SSO, and the tool captures the session cookies automatically (no manual token copying required).
-- **Session reuse** — caches the session in `idmc_session.json`; you can also paste cookies manually.
-- **Full-project export** — pages through the IDMC v3 REST API for all configured asset types, filtered to a project/location.
-- **Batched export + download** — exports assets in batches, polls the export job, and downloads the ZIP packages.
-- **Deep content extraction** — recursively unzips nested export packages and extracts every readable asset definition into a DataFrame.
+- **SSO cookie capture** - launches Microsoft Edge, you log in via SSO, and the tool captures the session cookies automatically (no manual token copying required).
+- **Session reuse** - caches the session in `idmc_session.json`; you can also paste cookies manually.
+- **Full-project export** - pages through the IDMC v3 REST API for all configured asset types, filtered to a project/location.
+- **Batched export + download** - exports assets in batches, polls the export job, and downloads the ZIP packages.
+- **Deep content extraction** - recursively unzips nested export packages and extracts every readable asset definition into a DataFrame.
 - **Component-level parsing**:
-  - **Taskflow XML** — multi-pass parser attributes each match to its owning component (DataTask, Notification, Expression, Decision/Condition, Assignment, ErrorHandler, Input Parameters, Temp Fields, etc.).
-  - **Mapping (bin / JSON)** — parses the mapping structure and reports the matching property / transformation / object.
-  - **MTT tasks (JSON)** — reports the matching task-config section.
-  - **Everything else** — line-level matches.
-- **Content caching** — pickles the extracted content (`idmc_content_cache.pkl`) so you can re-run searches instantly without re-exporting.
-- **Multi-format reports** — CSV, JSON, a human-readable summary `.txt`, and a rich console report (by term, by asset type, component detail, matched-line samples, and a "not found" list).
+  - **Taskflow XML** - multi-pass parser attributes each match to its owning component (DataTask, Notification, Expression, Decision/Condition, Assignment, ErrorHandler, Input Parameters, Temp Fields, etc.).
+  - **Mapping (bin / JSON)** - parses the mapping structure and reports the matching property / transformation / object.
+  - **MTT tasks (JSON)** - reports the matching task-config section.
+  - **Everything else** - line-level matches.
+- **Content caching** - pickles the extracted content (`idmc_content_cache.pkl`) so you can re-run searches instantly without re-exporting.
+- **Multi-format reports** - CSV, JSON, a human-readable summary `.txt`, and a rich console report (by term, by asset type, component detail, matched-line samples, and a "not found" list).
 
 ## Requirements
 
 - **Python 3.9+**
-- **Microsoft Edge** + **msedgedriver** (matching your Edge version) on `PATH` — only needed for the automated SSO login. If you provide cookies manually, the browser step is skipped.
+- **Microsoft Edge** + **msedgedriver** (matching your Edge version) on `PATH` - only needed for the automated SSO login. If you provide cookies manually, the browser step is skipped.
 - Python packages:
 
 ```bash
@@ -87,7 +87,7 @@ At minimum you need either `IDS_TOKEN` or `USER_SESSION`.
 
 ### 3. Re-running searches (use the cache)
 
-After a successful export the extracted content is cached in `idmc_content_cache.pkl`. On the next run you'll be asked whether to reuse it — this skips the API export entirely and searches in seconds.
+After a successful export the extracted content is cached in `idmc_content_cache.pkl`. On the next run you'll be asked whether to reuse it - this skips the API export entirely and searches in seconds.
 
 ```bash
 # Force a fresh export, ignore the cache
@@ -111,7 +111,7 @@ python idmc_deep_scan.py --cache-only
 | `idmc_deep_scan_report.csv` | Flat table: term, category, asset, asset type, component type/name, hit count, matched lines. |
 | `idmc_deep_scan_report.json` | Same results in JSON (records orientation). |
 | `idmc_deep_scan_summary.txt` | Human-readable summary grouped by search term, plus a "not found" list. |
-| `idmc_session.json` | Saved session cookies (**contains secrets — git-ignored**). |
+| `idmc_session.json` | Saved session cookies (**contains secrets - git-ignored**). |
 | `idmc_content_cache.pkl` | Pickled extracted content cache (**git-ignored**). |
 
 ## How it works
@@ -142,12 +142,12 @@ manual cookies    ─┴─►  validate session (v3 REST API)
 
 ## Security notes
 
-- `idmc_session.json` contains live session tokens. It is **git-ignored** — never commit it.
+- `idmc_session.json` contains live session tokens. It is **git-ignored** - never commit it.
 - The script disables SSL verification (`SSL_VERIFY = False`) for corporate proxy environments; set it to `True` if your environment has a valid cert chain.
 - The content cache may contain sensitive asset definitions; it is git-ignored by default.
 
 ## Notes
 
-- The tool is read-only against IDMC — it only exports assets, it never modifies anything.
+- The tool is read-only against IDMC - it only exports assets, it never modifies anything.
 - `includeDependencies` is set to `False` on export to keep packages small and scoped to the asset itself.
 - Adjust `SCAN_ASSET_TYPES` if your org uses asset types not listed, or to narrow the scan for speed.
