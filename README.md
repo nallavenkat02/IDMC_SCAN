@@ -2,7 +2,7 @@
 
 A Python tool that scans an **Informatica Intelligent Data Management Cloud (IDMC / IICS)** project and performs **object-level impact analysis** — it tells you exactly which assets (taskflows, mappings, tasks, mapplets, etc.) reference a given list of tables, columns, or keywords, and *where inside each asset* the reference occurs.
 
-Given a set of search terms (e.g. table names like `CMC_CLCL_CLAIM` or column names like `CSCI_EMAIL`), the tool exports every asset in a project, cracks open each export package, and reports the matching component down to the individual step / transformation / property level.
+Given a set of search terms (e.g. table names like `PRODUCT` or column names like `CSCI_EMAIL`), the tool exports every asset in a project, cracks open each export package, and reports the matching component down to the individual step / transformation / property level.
 
 ## Why
 
@@ -74,7 +74,7 @@ If browser automation isn't available, run once to generate a sample `idmc_sessi
 
 ```json
 {
-  "IDMC_SERVER_URL": "https://use6.dm-us.informaticacloud.com",
+  "IDMC_SERVER_URL": "https://####.####.informaticacloud.com",
   "IDS_TOKEN": "…",
   "USER_SESSION": "…",
   "JSESSIONID": "…",
