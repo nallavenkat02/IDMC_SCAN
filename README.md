@@ -43,7 +43,7 @@ selenium
 
 ## Configuration
 
-All configuration lives at the top of `deep_scan_upg_v3.py`:
+All configuration lives at the top of `idmc_deep_scan.py`:
 
 | Setting | Description |
 |---|---|
@@ -59,7 +59,7 @@ All configuration lives at the top of `deep_scan_upg_v3.py`:
 ### 1. First run (SSO login)
 
 ```bash
-python deep_scan_upg_v3.py
+python idmc_deep_scan.py
 ```
 
 On first run there is no session file, so the tool launches Edge. Complete your SSO login in the browser window. Once you land in the IDMC UI, the tool captures the cookies, saves them to `idmc_session.json`, validates the session, exports the project, and runs the search.
@@ -91,10 +91,10 @@ After a successful export the extracted content is cached in `idmc_content_cache
 
 ```bash
 # Force a fresh export, ignore the cache
-python deep_scan_upg_v3.py --no-cache
+python idmc_deep_scan.py --no-cache
 
 # Only use the cache; error out if none exists (never hits the API)
-python deep_scan_upg_v3.py --cache-only
+python idmc_deep_scan.py --cache-only
 ```
 
 ## Command-line options
